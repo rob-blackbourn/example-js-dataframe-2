@@ -1,4 +1,4 @@
-import { arrayMethods } from './array-methods'
+import arrayMethods from './array-methods'
 
 export class Series {
   constructor (name, array) {
@@ -9,8 +9,8 @@ export class Series {
       get: (obj, prop, receiver) => {
         if (prop in obj) {
           return Reflect.get(obj, prop, receiver)
-        } else if (prop in arrayMethods) {
-          return (...args) => new Series('', arrayMethods[prop](obj, ...args))
+        } else if (arrayMethods.has(prop)) {
+          return (...args) => new Series('', arrayMethods.get(prop)(obj, ...args))
         } else {
           return Reflect.get(obj.array, prop, receiver.array)
         }

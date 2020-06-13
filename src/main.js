@@ -1,18 +1,22 @@
 'operator-overloading enabled'
 
 import { Series } from './Series'
-import { arrayMethods } from './array-methods'
+import arrayMethods from './array-methods'
 import { DataFrame } from './DataFrame'
 
 const height = new Series('height', [1.82, 1.72, 1.64, 1.88])
-console.log(height)
+// console.log(height)
 
-const minusHeight = -height
-console.log(minusHeight.toString())
+// const minusHeight = -height
+// console.log(minusHeight.toString())
 
-arrayMethods[Symbol.for('**')] = (lhs, rhs) => lhs.array.map((value, index) => value ** rhs)
-const sqrHeight = height ** 2
-console.log(sqrHeight.toString())
+// arrayMethods.add(Symbol.for('**'), (lhs, rhs) => lhs.array.map((value, index) => value ** rhs))
+// const sqrHeight = height ** 2
+// console.log(sqrHeight.toString())
+
+arrayMethods.add('max', (lhs) => Math.max(...height))
+const maxHeight = height.max()
+console.log(maxHeight)
 
 // console.log(`${height}`)
 // console.log(height.toString())
